@@ -3,7 +3,6 @@ import pandas as pd
 import numpy as np
 from PIL import Image
 import matplotlib.pyplot as plt
-import cv2
 import streamlit as st
 from streamlit_drawable_canvas import st_canvas
 import tensorflow as tf
@@ -26,8 +25,6 @@ def app():
     def tort():
         st.session_state.faux_d += 1
         st.session_state.tentatives_d += 1
-
-    # st.write(st.session_state)
 
     st.title("Le petit prince ne veut plus de mouton : ")
 
@@ -64,10 +61,11 @@ def app():
 
         # with st.sidebar:
 
-        res = cv2.resize(canvas_result.image_data.astype('uint8'), dsize=(28, 28), interpolation=cv2.INTER_CUBIC)
+        res = Image.fromarray(canvas_result.image_data.astype('uint8'),'RGBA')
+        res = res.resize((28, 28))
+        res = np.array(res)
 
             # Affichage de l'image compressée
-            # fig, ax = plt.subplots(figsize=(0.2, 0.2))
         fig, ax = plt.subplots()
         plt.axis("off")
         ax.imshow(res, cmap=plt.get_cmap('gray'))
