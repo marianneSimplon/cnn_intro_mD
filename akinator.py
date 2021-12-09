@@ -41,7 +41,7 @@ def app():
     reconstructed_model = tf.keras.models.load_model("models/model")
 
     #Importer un csv
-    csv_dowloaded = pd.read_csv(r'data\test.csv',delimiter=',', decimal='.')
+    csv_dowloaded = pd.read_csv(r'data/test.csv',delimiter=',', decimal='.')
 
     # preprocessing des inputs
     def preprocess(input):
